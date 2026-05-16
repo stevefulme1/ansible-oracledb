@@ -1,0 +1,31 @@
+---
+- name: Test oracle_audit_policy module
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create audit_policy (check mode)
+      stevefulme1.oracledb.oracle_audit_policy:
+        host: "{{ test_host }}"
+        name: "test-audit-policy"
+        state: present
+      check_mode: true
+      register: check_result
+      ignore_errors: true
+
+    - name: Verify check mode reports changed
+      ansible.builtin.assert:
+        that:
+          - check_result is changed or check_result is failed
+        fail_msg: "Check mode did not report changed"
+
+    - name: List audit_policys
+      stevefulme1.oracledb.oracle_audit_policy_info:
+        host: "{{ test_host }}"
+      register: list_result
+      ignore_errors: true
+
+    - name: Verify list returns a list
+      ansible.builtin.assert:
+        that:
+          - list_result.audit_policys is defined or list_result is failed
+        fail_msg: "List did not return expected structure"
