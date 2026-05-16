@@ -1,3 +1,6 @@
+from __future__ import absolute_import, division, print_function
+__metaclass__ = type
+
 """Unit tests for oracle_rac_node module."""
 
 from unittest.mock import MagicMock

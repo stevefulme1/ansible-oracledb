@@ -1,3 +1,6 @@
+from __future__ import absolute_import, division, print_function
+__metaclass__ = type
+
 """Unit tests for oracle_sql_plan_baseline module."""
 
 from unittest.mock import MagicMock
