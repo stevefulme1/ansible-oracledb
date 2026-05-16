@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_tablespace_management
+
+# Target host
+oracle_tablespace_management_host: ""
+
+# Authentication
+oracle_tablespace_management_username: ""
+oracle_tablespace_management_password: ""
+oracle_tablespace_management_api_key: ""
+
+# Behavior
+oracle_tablespace_management_validate_certs: true
+oracle_tablespace_management_state: present

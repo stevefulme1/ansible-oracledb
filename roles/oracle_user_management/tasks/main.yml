@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_user_management
+# Bulk user, role, and privilege management
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_user_management_host is defined
+    fail_msg: "oracle_user_management_host must be defined"
+    quiet: true
+
+- name: Execute oracle user management
+  ansible.builtin.debug:
+    msg: >-
+      Bulk user, role, and privilege management.
+      Target: {{ oracle_user_management_host }}

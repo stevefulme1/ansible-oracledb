@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_dataguard_setup
+# Deploy Oracle Data Guard standby from scratch
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_dataguard_setup_host is defined
+    fail_msg: "oracle_dataguard_setup_host must be defined"
+    quiet: true
+
+- name: Execute oracle dataguard setup
+  ansible.builtin.debug:
+    msg: >-
+      Deploy Oracle Data Guard standby from scratch.
+      Target: {{ oracle_dataguard_setup_host }}

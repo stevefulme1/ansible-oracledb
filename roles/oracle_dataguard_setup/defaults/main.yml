@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_dataguard_setup
+
+# Target host
+oracle_dataguard_setup_host: ""
+
+# Authentication
+oracle_dataguard_setup_username: ""
+oracle_dataguard_setup_password: ""
+oracle_dataguard_setup_api_key: ""
+
+# Behavior
+oracle_dataguard_setup_validate_certs: true
+oracle_dataguard_setup_state: present

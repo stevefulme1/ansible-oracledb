@@ -1,0 +1,27 @@
+---
+argument_specs:
+  main:
+    short_description: "Configure AWR, alerts, and OEM integration"
+    options:
+      oracle_monitoring_host:
+        description: Target host address
+        type: str
+        required: true
+      oracle_monitoring_username:
+        description: Authentication username
+        type: str
+      oracle_monitoring_password:
+        description: Authentication password
+        type: str
+      oracle_monitoring_api_key:
+        description: API key for authentication
+        type: str
+      oracle_monitoring_validate_certs:
+        description: Validate SSL certificates
+        type: bool
+        default: true
+      oracle_monitoring_state:
+        description: Desired state
+        type: str
+        default: present
+        choices: [present, absent]

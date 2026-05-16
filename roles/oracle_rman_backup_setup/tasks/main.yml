@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_rman_backup_setup
+# Configure RMAN backup policies and schedules
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_rman_backup_setup_host is defined
+    fail_msg: "oracle_rman_backup_setup_host must be defined"
+    quiet: true
+
+- name: Execute oracle rman backup setup
+  ansible.builtin.debug:
+    msg: >-
+      Configure RMAN backup policies and schedules.
+      Target: {{ oracle_rman_backup_setup_host }}

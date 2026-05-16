@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_user_management
+
+# Target host
+oracle_user_management_host: ""
+
+# Authentication
+oracle_user_management_username: ""
+oracle_user_management_password: ""
+oracle_user_management_api_key: ""
+
+# Behavior
+oracle_user_management_validate_certs: true
+oracle_user_management_state: present

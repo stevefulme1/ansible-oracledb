@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_security_hardening
+# Apply CIS/STIG security benchmarks
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_security_hardening_host is defined
+    fail_msg: "oracle_security_hardening_host must be defined"
+    quiet: true
+
+- name: Execute oracle security hardening
+  ansible.builtin.debug:
+    msg: >-
+      Apply CIS/STIG security benchmarks.
+      Target: {{ oracle_security_hardening_host }}

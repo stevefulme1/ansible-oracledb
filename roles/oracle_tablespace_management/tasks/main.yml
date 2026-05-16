@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_tablespace_management
+# Auto-extend, resize, and manage tablespaces
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_tablespace_management_host is defined
+    fail_msg: "oracle_tablespace_management_host must be defined"
+    quiet: true
+
+- name: Execute oracle tablespace management
+  ansible.builtin.debug:
+    msg: >-
+      Auto-extend, resize, and manage tablespaces.
+      Target: {{ oracle_tablespace_management_host }}

@@ -1,0 +1,27 @@
+---
+argument_specs:
+  main:
+    short_description: "DR failover/switchover orchestration"
+    options:
+      oracle_disaster_recovery_host:
+        description: Target host address
+        type: str
+        required: true
+      oracle_disaster_recovery_username:
+        description: Authentication username
+        type: str
+      oracle_disaster_recovery_password:
+        description: Authentication password
+        type: str
+      oracle_disaster_recovery_api_key:
+        description: API key for authentication
+        type: str
+      oracle_disaster_recovery_validate_certs:
+        description: Validate SSL certificates
+        type: bool
+        default: true
+      oracle_disaster_recovery_state:
+        description: Desired state
+        type: str
+        default: present
+        choices: [present, absent]

@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_rac_setup
+
+# Target host
+oracle_rac_setup_host: ""
+
+# Authentication
+oracle_rac_setup_username: ""
+oracle_rac_setup_password: ""
+oracle_rac_setup_api_key: ""
+
+# Behavior
+oracle_rac_setup_validate_certs: true
+oracle_rac_setup_state: present

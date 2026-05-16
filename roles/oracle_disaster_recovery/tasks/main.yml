@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_disaster_recovery
+# DR failover/switchover orchestration
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_disaster_recovery_host is defined
+    fail_msg: "oracle_disaster_recovery_host must be defined"
+    quiet: true
+
+- name: Execute oracle disaster recovery
+  ansible.builtin.debug:
+    msg: >-
+      DR failover/switchover orchestration.
+      Target: {{ oracle_disaster_recovery_host }}

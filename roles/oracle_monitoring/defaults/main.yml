@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_monitoring
+
+# Target host
+oracle_monitoring_host: ""
+
+# Authentication
+oracle_monitoring_username: ""
+oracle_monitoring_password: ""
+oracle_monitoring_api_key: ""
+
+# Behavior
+oracle_monitoring_validate_certs: true
+oracle_monitoring_state: present

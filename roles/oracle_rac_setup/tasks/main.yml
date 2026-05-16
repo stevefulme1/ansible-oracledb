@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_rac_setup
+# Deploy Oracle RAC cluster
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_rac_setup_host is defined
+    fail_msg: "oracle_rac_setup_host must be defined"
+    quiet: true
+
+- name: Execute oracle rac setup
+  ansible.builtin.debug:
+    msg: >-
+      Deploy Oracle RAC cluster.
+      Target: {{ oracle_rac_setup_host }}

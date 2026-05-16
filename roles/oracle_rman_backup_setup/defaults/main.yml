@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_rman_backup_setup
+
+# Target host
+oracle_rman_backup_setup_host: ""
+
+# Authentication
+oracle_rman_backup_setup_username: ""
+oracle_rman_backup_setup_password: ""
+oracle_rman_backup_setup_api_key: ""
+
+# Behavior
+oracle_rman_backup_setup_validate_certs: true
+oracle_rman_backup_setup_state: present

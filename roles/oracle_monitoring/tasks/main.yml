@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_monitoring
+# Configure AWR, alerts, and OEM integration
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_monitoring_host is defined
+    fail_msg: "oracle_monitoring_host must be defined"
+    quiet: true
+
+- name: Execute oracle monitoring
+  ansible.builtin.debug:
+    msg: >-
+      Configure AWR, alerts, and OEM integration.
+      Target: {{ oracle_monitoring_host }}

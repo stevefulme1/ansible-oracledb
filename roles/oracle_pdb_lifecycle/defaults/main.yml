@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_pdb_lifecycle
+
+# Target host
+oracle_pdb_lifecycle_host: ""
+
+# Authentication
+oracle_pdb_lifecycle_username: ""
+oracle_pdb_lifecycle_password: ""
+oracle_pdb_lifecycle_api_key: ""
+
+# Behavior
+oracle_pdb_lifecycle_validate_certs: true
+oracle_pdb_lifecycle_state: present

@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_patching
+# Rolling patch application for RAC and single instance
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_patching_host is defined
+    fail_msg: "oracle_patching_host must be defined"
+    quiet: true
+
+- name: Execute oracle patching
+  ansible.builtin.debug:
+    msg: >-
+      Rolling patch application for RAC and single instance.
+      Target: {{ oracle_patching_host }}

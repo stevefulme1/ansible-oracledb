@@ -1,0 +1,27 @@
+---
+argument_specs:
+  main:
+    short_description: "Create, clone, refresh, and manage PDBs"
+    options:
+      oracle_pdb_lifecycle_host:
+        description: Target host address
+        type: str
+        required: true
+      oracle_pdb_lifecycle_username:
+        description: Authentication username
+        type: str
+      oracle_pdb_lifecycle_password:
+        description: Authentication password
+        type: str
+      oracle_pdb_lifecycle_api_key:
+        description: API key for authentication
+        type: str
+      oracle_pdb_lifecycle_validate_certs:
+        description: Validate SSL certificates
+        type: bool
+        default: true
+      oracle_pdb_lifecycle_state:
+        description: Desired state
+        type: str
+        default: present
+        choices: [present, absent]

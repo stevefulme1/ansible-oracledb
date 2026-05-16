@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_security_hardening
+
+# Target host
+oracle_security_hardening_host: ""
+
+# Authentication
+oracle_security_hardening_username: ""
+oracle_security_hardening_password: ""
+oracle_security_hardening_api_key: ""
+
+# Behavior
+oracle_security_hardening_validate_certs: true
+oracle_security_hardening_state: present

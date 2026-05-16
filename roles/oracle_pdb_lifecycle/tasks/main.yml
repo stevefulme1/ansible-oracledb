@@ -1,0 +1,16 @@
+---
+# tasks/main.yml for oracle_pdb_lifecycle
+# Create, clone, refresh, and manage PDBs
+
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - oracle_pdb_lifecycle_host is defined
+    fail_msg: "oracle_pdb_lifecycle_host must be defined"
+    quiet: true
+
+- name: Execute oracle pdb lifecycle
+  ansible.builtin.debug:
+    msg: >-
+      Create, clone, refresh, and manage PDBs.
+      Target: {{ oracle_pdb_lifecycle_host }}

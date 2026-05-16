@@ -1,0 +1,27 @@
+---
+argument_specs:
+  main:
+    short_description: "Apply CIS/STIG security benchmarks"
+    options:
+      oracle_security_hardening_host:
+        description: Target host address
+        type: str
+        required: true
+      oracle_security_hardening_username:
+        description: Authentication username
+        type: str
+      oracle_security_hardening_password:
+        description: Authentication password
+        type: str
+      oracle_security_hardening_api_key:
+        description: API key for authentication
+        type: str
+      oracle_security_hardening_validate_certs:
+        description: Validate SSL certificates
+        type: bool
+        default: true
+      oracle_security_hardening_state:
+        description: Desired state
+        type: str
+        default: present
+        choices: [present, absent]

@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_patching
+
+# Target host
+oracle_patching_host: ""
+
+# Authentication
+oracle_patching_username: ""
+oracle_patching_password: ""
+oracle_patching_api_key: ""
+
+# Behavior
+oracle_patching_validate_certs: true
+oracle_patching_state: present

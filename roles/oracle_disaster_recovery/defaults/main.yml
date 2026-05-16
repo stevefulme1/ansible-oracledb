@@ -1,0 +1,14 @@
+---
+# defaults/main.yml for oracle_disaster_recovery
+
+# Target host
+oracle_disaster_recovery_host: ""
+
+# Authentication
+oracle_disaster_recovery_username: ""
+oracle_disaster_recovery_password: ""
+oracle_disaster_recovery_api_key: ""
+
+# Behavior
+oracle_disaster_recovery_validate_certs: true
+oracle_disaster_recovery_state: present
