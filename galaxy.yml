@@ -1,0 +1,15 @@
+---
+namespace: stevefulme1
+name: oracledb
+version: 1.0.0
+readme: README.md
+authors:
+  - Steve Fulmer <sfulmer@redhat.com>
+description: >-
+  Ansible Collection for Oracle Database — tablespaces, users, Data Guard, RMAN, RAC, PDB/CDB, audit, TDE, and EDA via OEM webhooks and Oracle AQ
+license_file: LICENSE
+tags: [oracledb]
+repository: https://github.com/stevefulme1/ansible-oracledb
+documentation: https://github.com/stevefulme1/ansible-oracledb
+issues: https://github.com/stevefulme1/ansible-oracledb/issues
+build_ignore: [.git, .github, tests, '*.tar.gz']
