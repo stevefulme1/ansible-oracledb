@@ -53,4 +53,3 @@ plugins/modules/oracle_tnsnames.py
 plugins/modules/oracle_user_info.py
 plugins/modules/oracle_user.py
 plugins/modules/oracle_vpd_policy_info.py
-plugins/modules/oracle_vpd_policy.py pylint:unhashable-member
