@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("link_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("db_link", resource_id, module.params)
+            existing = client.get("db_link", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("db_link", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, db_link=existing)
+            result = client.update("db_link", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, db_link=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("db_link", module.params)
-        module.exit_json(changed=True, db_link=result)
+            module.exit_json(changed=True, db_link=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("db_link", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("db_link", resource_id)

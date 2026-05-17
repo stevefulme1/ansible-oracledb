@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("pdb_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("pdb", resource_id, module.params)
+            existing = client.get("pdb", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("pdb", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, pdb=existing)
+            result = client.update("pdb", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, pdb=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("pdb", module.params)
-        module.exit_json(changed=True, pdb=result)
+            module.exit_json(changed=True, pdb=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("pdb", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("pdb", resource_id)

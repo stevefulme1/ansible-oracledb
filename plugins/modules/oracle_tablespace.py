@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("ts_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("tablespace", resource_id, module.params)
+            existing = client.get("tablespace", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("tablespace", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, tablespace=existing)
+            result = client.update("tablespace", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, tablespace=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("tablespace", module.params)
-        module.exit_json(changed=True, tablespace=result)
+            module.exit_json(changed=True, tablespace=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("tablespace", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("tablespace", resource_id)

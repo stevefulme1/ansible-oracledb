@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("node_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("rac_node", resource_id, module.params)
+            existing = client.get("rac_node", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("rac_node", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, rac_node=existing)
+            result = client.update("rac_node", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, rac_node=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("rac_node", module.params)
-        module.exit_json(changed=True, rac_node=result)
+            module.exit_json(changed=True, rac_node=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("rac_node", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("rac_node", resource_id)

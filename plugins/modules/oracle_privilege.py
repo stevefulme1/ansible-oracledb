@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("priv_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("privilege", resource_id, module.params)
+            existing = client.get("privilege", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("privilege", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, privilege=existing)
+            result = client.update("privilege", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, privilege=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("privilege", module.params)
-        module.exit_json(changed=True, privilege=result)
+            module.exit_json(changed=True, privilege=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("privilege", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("privilege", resource_id)

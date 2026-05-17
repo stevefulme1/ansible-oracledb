@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("policy_name")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("audit_policy", resource_id, module.params)
+            existing = client.get("audit_policy", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("audit_policy", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, audit_policy=existing)
+            result = client.update("audit_policy", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, audit_policy=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("audit_policy", module.params)
-        module.exit_json(changed=True, audit_policy=result)
+            module.exit_json(changed=True, audit_policy=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("audit_policy", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("audit_policy", resource_id)

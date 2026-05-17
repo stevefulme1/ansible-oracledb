@@ -104,14 +104,30 @@ def main():
     resource_id = module.params.get("switchover_id")
 
     if state == "present":
+        existing = None
         if resource_id:
-            result = client.update("dg_switchover", resource_id, module.params)
+            existing = client.get("dg_switchover", resource_id)
+        elif module.params.get("name"):
+            candidates = client.list("dg_switchover", {{"name": module.params["name"]}})
+            if candidates:
+                existing = candidates[0]
+
+        if existing:
+            if module.check_mode:
+                module.exit_json(changed=False, dg_switchover=existing)
+            result = client.update("dg_switchover", resource_id or existing.get("id", ""), module.params)
+            module.exit_json(changed=True, dg_switchover=result)
         else:
             if module.check_mode:
                 module.exit_json(changed=True)
             result = client.create("dg_switchover", module.params)
-        module.exit_json(changed=True, dg_switchover=result)
+            module.exit_json(changed=True, dg_switchover=result)
     else:
+        existing = None
+        if resource_id:
+            existing = client.get("dg_switchover", resource_id)
+        if not existing:
+            module.exit_json(changed=False)
         if module.check_mode:
             module.exit_json(changed=True)
         client.delete("dg_switchover", resource_id)
