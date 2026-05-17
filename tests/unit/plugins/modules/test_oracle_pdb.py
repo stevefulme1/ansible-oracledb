@@ -5,7 +5,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import pytest
-from unittest.mock import MagicMock, patch, call
 
 from ansible_collections.stevefulme1.oracledb.plugins.modules import oracle_pdb
 
