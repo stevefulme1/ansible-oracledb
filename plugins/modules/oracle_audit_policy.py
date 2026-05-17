@@ -108,7 +108,7 @@ def main():
         if resource_id:
             existing = client.get("audit_policy", resource_id)
         elif module.params.get("name"):
-            candidates = client.list("audit_policy", {{"name": module.params["name"]}})
+            candidates = client.list("audit_policy", {dict(name=module.params.get("name", ""))})
             if candidates:
                 existing = candidates[0]
 

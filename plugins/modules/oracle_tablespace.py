@@ -108,7 +108,7 @@ def main():
         if resource_id:
             existing = client.get("tablespace", resource_id)
         elif module.params.get("name"):
-            candidates = client.list("tablespace", {{"name": module.params["name"]}})
+            candidates = client.list("tablespace", {dict(name=module.params.get("name", ""))})
             if candidates:
                 existing = candidates[0]
 
