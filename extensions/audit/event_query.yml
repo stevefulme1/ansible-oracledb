@@ -1,0 +1,80 @@
+---
+# extensions/audit/event_query.yml
+# Maps module return values to the AAP Normalized Resource Taxonomy
+# for indirect node counting.
+#
+# Oracle DB modules return API response dicts.  PDBs, tablespaces,
+# listeners, RAC nodes, services, and users are all tracked as
+# database_relational resources.
+
+stevefulme1.oracledb.oracle_pdb:
+  query: >-
+    {
+      name: .pdb.name,
+      canonical_facts: {
+        uuid: .pdb.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
+
+stevefulme1.oracledb.oracle_tablespace:
+  query: >-
+    {
+      name: .tablespace.name,
+      canonical_facts: {
+        uuid: .tablespace.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
+
+stevefulme1.oracledb.oracle_listener:
+  query: >-
+    {
+      name: .listener.name,
+      canonical_facts: {
+        uuid: .listener.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
+
+stevefulme1.oracledb.oracle_rac_node:
+  query: >-
+    {
+      name: .rac_node.name,
+      canonical_facts: {
+        uuid: .rac_node.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
+
+stevefulme1.oracledb.oracle_service:
+  query: >-
+    {
+      name: .service.name,
+      canonical_facts: {
+        uuid: .service.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
+
+stevefulme1.oracledb.oracle_user:
+  query: >-
+    {
+      name: .user.name,
+      canonical_facts: {
+        uuid: .user.id
+      },
+      facts: {
+        device_type: "database_relational"
+      }
+    }
