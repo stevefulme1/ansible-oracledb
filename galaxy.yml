@@ -9,7 +9,7 @@ description: >-
   Ansible Collection for Oracle Database — tablespaces, users, Data Guard, RMAN, RAC, PDB/CDB, audit, TDE, and EDA via OEM webhooks and Oracle AQ
   Status: Pre-release. Under active development.
 license_file: LICENSE
-tags: [oracledb]
+tags: [database, oracledb]
 repository: https://github.com/stevefulme1/ansible-oracledb
 documentation: https://github.com/stevefulme1/ansible-oracledb
 issues: https://github.com/stevefulme1/ansible-oracledb/issues

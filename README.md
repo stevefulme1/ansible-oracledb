@@ -1,10 +1,18 @@
 # stevefulme1.oracledb
 
-Ansible Collection for Oracle Database -- tablespaces, users, Data Guard, RMAN, RAC, PDB/CDB, audit, TDE, and EDA via OEM webhooks and Oracle AQ.
+Ansible Collection for Oracle Database -- tablespaces, users, Data Guard, RMAN, RAC, PDB/CDB, audit, and TDE.
+
+**Status: Pre-release (0.1.0). Under active development.**
 
 ## Overview
 
-This collection provides **57 modules** for automating Oracle Database infrastructure, along with 10 operational roles, a dynamic inventory plugin, and CI/CD workflows.
+This collection will provide modules for automating Oracle Database using real database drivers:
+
+- **Database operations** -- via `oracledb` (python-oracledb) Python driver for SQL/PL-SQL
+- **RMAN** -- via command-line RMAN interface
+- **Listener** -- via `lsnrctl` command-line tool
+
+Placeholder roles are included for common operational workflows.
 
 ## Requirements
 
@@ -21,24 +29,17 @@ Or from source:
 
 ```bash
 ansible-galaxy collection build
-ansible-galaxy collection install stevefulme1-oracledb-2.0.0.tar.gz
+ansible-galaxy collection install stevefulme1-oracledb-0.1.0.tar.gz
 ```
 
 ## Included Content
 
-### Modules (57)
+### Modules
 
-CRUD and info modules covering:
+No modules yet. Modules will use:
 
-- **Tablespaces** -- create, resize, drop, autoextend
-- **Users** -- create, alter, drop, grant privileges
-- **Data Guard** -- primary/standby configuration, switchover, failover
-- **RMAN** -- backup, restore, recovery catalog
-- **RAC** -- cluster management, services, instances
-- **PDB/CDB** -- pluggable database lifecycle
-- **Audit** -- unified audit policies, audit trail
-- **TDE** -- transparent data encryption, key management
-- **Monitoring** -- AWR, ASH, alert log parsing
+- `oracledb` (python-oracledb, successor to cx_Oracle) for SQL/PL-SQL operations
+- Command-line tools (RMAN, lsnrctl, srvctl) for infrastructure operations
 
 ### Roles (10)
 
@@ -55,33 +56,12 @@ CRUD and info modules covering:
 | `oracle_tablespace_management` | Tablespace lifecycle management |
 | `oracle_user_management` | User and privilege management |
 
-### Inventory Plugin
-
-- `oracledb_inventory` -- Dynamic inventory from Oracle databases
-
-## Usage
-
-```yaml
-- name: Create a tablespace
-  stevefulme1.oracledb.oracledb_tablespace:
-    host: "{{ oracle_host }}"
-    username: "{{ oracle_user }}"
-    password: "{{ oracle_pass }}"
-    service_name: "{{ oracle_service }}"
-    name: APP_DATA
-    size: 500M
-    autoextend: true
-    state: present
-```
-
 ## License
 
-Apache-2.0
+GPL-3.0-or-later
 
 ## Community
 
 - [Contributing](CONTRIBUTING.md) - How to contribute to this project
 - [Code of Conduct](CODE_OF_CONDUCT.md) - Ansible Community Code of Conduct
 - [Security Policy](SECURITY.md) - How to report security vulnerabilities
-- [License](COPYING) - GPL-3.0
-
